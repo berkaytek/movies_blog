@@ -19,7 +19,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Grid } from "@mui/material";
-import { Logout } from "@mui/icons-material";
+import { Logout, Person } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -66,8 +66,8 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -111,10 +111,10 @@ export default function MiniDrawer({ children }: IProps) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar sx={{maxHeight:36}} position="fixed" open={open}>
-        <Grid container>
-          <Grid item xs={4}>
-            <Toolbar>
+      <AppBar sx={{maxHeight:48}} position="fixed" open={open}>
+        <Grid sx={{maxHeight:48}} container >
+          <Grid  item xs={4}>
+            <Toolbar style={{minHeight:48, height:48}}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -122,17 +122,27 @@ export default function MiniDrawer({ children }: IProps) {
                 edge="start"
                 sx={{
                   marginRight: 5,
-                  ...(open && { display: "none" }),
-                }}
+                  ...(open && { display: "none" }),                }}
               >
                 <MenuIcon />
               </IconButton>
             </Toolbar>
             </Grid>
-            <Grid item xs={4} > 
+            <Grid item xs={4} style={{textAlign:'center', marginTop:8}}> 
+                  <Typography variant="h6">BeMovies</Typography>
             </Grid>
-            <Grid item xs={4} sx={{justifyContent:'end', display:'grid'}}>
-            <Toolbar>
+            <Grid item xs={4} sx={{justifyContent:'end', display:'flex', maxHeight:48}}>
+            <Toolbar style={{minHeight:48, height:48}}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+              >
+                <Person />
+              </IconButton>
+            </Toolbar>
+            <Toolbar style={{minHeight:48, height:48}}>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -142,14 +152,15 @@ export default function MiniDrawer({ children }: IProps) {
                 <Logout />
               </IconButton>
             </Toolbar>
+
             </Grid>
           </Grid>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-        <Grid container>
+        <DrawerHeader style={{maxHeight:48, minHeight:48}}>
+        <Grid style={{maxHeight:48, minHeight:48}} container>
           <Grid item xs={4}>
-           <Typography>Test Title</Typography>
+           <Typography>Berkay MDB</Typography>
           </Grid>
           <Grid item xs={4}>
 
@@ -217,10 +228,21 @@ export default function MiniDrawer({ children }: IProps) {
           ))}
         </List>
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}
       </Box>
     </Box>
   );
+
+  const styles={
+    header:{
+      maxHeight:48
+    }
+  }
 }
+
+/*
+
+      */
