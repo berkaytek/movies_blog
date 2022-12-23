@@ -1,6 +1,6 @@
 export interface MovieModelBase {
-    homepage: string | null;
-    id: string;
-    posterPath: string | null;
-    title: string | null;
+    id?: number;
+    title:string;
+    posterPath?: string;
+    genres?: string;
 }
