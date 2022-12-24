@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 
 // Since the children will be ReactNode
-export interface props {
+interface props {
     children?: React.ReactNode;
  }
 

@@ -1,41 +1,77 @@
-import React from 'react';
-import service from '../../api/service';
-import { MovieModelBase } from '../../models/MovieModelBase';
-import { Container, Grid } from '@mui/material';
-import MovieBasicCard from '../../components/layouts/MovieBasicCard/MovieBasicCard';
-
+import React from "react";
+import service from "../../api/service";
+import { MovieModelBase } from "../../models/MovieModelBase";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import MovieBasicCard from "../../components/MovieBasicCard/MovieBasicCard";
+import MovieBasicCarousel from "../../components/MovieBasicCarousel/MovieBasicCarousel";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Home() {
-  const [movieData,setMovieData] = React.useState<Array<MovieModelBase>>([]);
-  const [Carousel, setCarouselData] = React.useState<Array<MovieModelBase>>([]);
+  const [movieData, setMovieData] = React.useState<Array<MovieModelBase>>([]);
+  const [CarouselData, setCarouselData] = React.useState<Array<MovieModelBase>>(
+    []
+  );
+  const [totalMovieCount, setTotalMovieCount] = React.useState<number>(0);
+  const [isLoading, setLoading] = React.useState<boolean>(true);
 
-  async function getInitialData(){
-    var initialMovieData:Array<MovieModelBase> = await service.getItems<MovieModelBase>("/api/Movies/GetMoviesByStartAndEndIndex?startIndex=0&endIndex=25")
+  function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+  async function getInitialData() {
+    var initialMovieData: Array<MovieModelBase> =
+      await service.getItems<MovieModelBase>(
+        "/api/Movies/GetMoviesByStartAndEndIndex?startIndex=50000&endIndex=50025"
+      );
     setMovieData(initialMovieData);
   }
 
-  async function getInitialCorouselData(){
-    var startIndex = Math.floor(Math.random() * 100000);
-    var endIndex = startIndex + 5;
-    var initialCarouselData:Array<MovieModelBase> = await service.getItems<MovieModelBase>(`/api/Movies/GetMoviesByStartAndEndIndex?startIndex=${startIndex.toString()}&endIndex=${endIndex.toString()}`)
-    setCarouselData(initialCarouselData);
+  async function getTotalMovieCount() {
+    var movieCount: number = await service.getSingleItem<number>(
+      "/api/Movies/GetMoviesTotalCount"
+    );
+    setTotalMovieCount(movieCount);
+    return movieCount;
   }
 
-  React.useEffect(()=>{
-    getInitialData();
-  },[])
+  async function getInitialCorouselData(maxCount: number) {
+    var endIndex = Math.floor(Math.random() * maxCount);
+    var startIndex = endIndex - 5;
+    var initialCarouselData: Array<MovieModelBase> =
+      await service.getItems<MovieModelBase>(
+        `/api/Movies/GetMoviesByStartAndEndIndex?startIndex=${startIndex.toString()}&endIndex=${endIndex.toString()}`
+      );
+    setCarouselData(initialCarouselData);
+    return initialCarouselData;
+  }
 
-
+  React.useEffect(() => {
+    getTotalMovieCount().then((result) => {
+      getInitialCorouselData(result);
+    });
+    getInitialData()
+    .then(()=>delay(1000))
+    .then(() => setLoading(false));
+  }, []);
 
   return (
-    <Container>
-    <Grid container spacing={3}>
-        {movieData.map((data,index)=>
-        <Grid key={index} item xs={12} sm={6} md={2}>
-          <MovieBasicCard image={data.posterPath} title={data.title} />
+    <Container style={{ maxWidth: "100%" }}>
+      {isLoading ? <LoadingSpinner /> :
+      <>
+      <Grid container style={{ justifyContent: "center" }}>
+        <Grid item xs={12} sm={12} md={6}>
+          <MovieBasicCarousel movies={CarouselData} />
         </Grid>
-          )}
-    </Grid>
+      </Grid>
+      <Grid container spacing={3}>
+        {movieData.map((data, index) => (
+          <Grid key={index} item xs={12} sm={6} md={3}>
+            <MovieBasicCard image={data.posterPath} title={data.title} />
+          </Grid>
+        ))}
+      </Grid>
+      </>
+      }
     </Container>
-  )
+  );
 }

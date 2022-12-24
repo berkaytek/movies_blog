@@ -15,7 +15,7 @@ interface IMovieBasicCardProps{
 const MovieBasicCard: React.FC<IMovieBasicCardProps> = ({ image, title }) => {
 
   return (
-    <Card style={{maxWidth:345, height:600}}>
+    <Card style={{maxWidth:345, height:625}}>
       <CardActionArea>
         <CardMedia
           style={{maxWidth:345, aspectRatio:3/5}}

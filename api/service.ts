@@ -26,7 +26,10 @@ const service = {
     const items = await service.request<T[]>(endPoint);
     return items;
   },
-
+  async getSingleItem<T>(endPoint:string): Promise<T> {
+    const item = await service.request<T>(endPoint);
+    return item;
+  },
   async getById<T>(id: string, endPoint:string): Promise<T> {
     const item = await service.request<T>(`${endPoint}/${id}`);
     return item;
