@@ -3,4 +3,5 @@ export interface MovieModelBase {
     title:string;
     posterPath?: string;
     genres?: string;
+    overview?: string;
 }

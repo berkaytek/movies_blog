@@ -21,7 +21,7 @@ export default function Home() {
   async function getInitialData() {
     var initialMovieData: Array<MovieModelBase> =
       await service.getItems<MovieModelBase>(
-        "/api/Movies/GetMoviesByStartAndEndIndex?startIndex=50000&endIndex=50025"
+        "/api/Movies/GetMoviesByStartAndEndIndex?startIndex=70000&endIndex=70025"
       );
     setMovieData(initialMovieData);
   }
@@ -58,7 +58,7 @@ export default function Home() {
     <Container style={{ maxWidth: "100%" }}>
       {isLoading ? <LoadingSpinner /> :
       <>
-      <Grid container style={{ justifyContent: "center" }}>
+      <Grid container style={{ justifyContent: "center", marginBottom:50 }}>
         <Grid item xs={12} sm={12} md={6}>
           <MovieBasicCarousel movies={CarouselData} />
         </Grid>
