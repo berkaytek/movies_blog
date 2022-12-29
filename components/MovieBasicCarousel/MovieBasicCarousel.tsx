@@ -17,7 +17,7 @@ function MovieBasicCarousel(props: IMovieBasicCarouselProps) {
   return (
     <Carousel>
       {props.movies.map((movie) => (
-        <Card sx={{ display: "flex" }}>
+        <Card key={movie.id} sx={{ display: "flex" }}>
           <CardMedia
             style={{ maxWidth: 345, aspectRatio: 3 / 5 }}
             component="img"
