@@ -6,12 +6,13 @@ interface IMovieCard {
   title?: string;
   overview?: string;
   vote_average?: string;
+  voteCount?:string;
 }
 
 export default function MovieCard(props: IMovieCard) {
   return (
     <>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg h-300 hover:scale-105 cur  ">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg h-300 hover:scale-105 cursor-pointer">
         <img
           className="w-full"
           src={
@@ -25,10 +26,10 @@ export default function MovieCard(props: IMovieCard) {
           <div className="flex">
             <StarIcon className="block h-6 w-6 text-yellow-400" aria-hidden="true" />
             <div className="ml-1">
-              {parseFloat(props.vote_average!).toPrecision(2)}
+              {parseFloat(props.vote_average!).toPrecision(2)} ({props.voteCount})
             </div>
           </div>
-          <div className="font-bold text-xl mb-2 mt-1">{props.title}</div>
+          <div className="font-bold lg:text-xl sm:text-sm mb-2 mt-1">{props.title}</div>
         </div>
       </div>
     </>

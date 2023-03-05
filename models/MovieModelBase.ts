@@ -7,8 +7,9 @@ interface movieList{
 export interface MovieModel{
     id?: number;
     title:string;
-    poster_path?: string;
+    posterPath?: string;
     genres?: string;
     overview?: string;
-    vote_average?: string;
+    voteAverage?: string;
+    voteCount?: string;
 }
