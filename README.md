@@ -1,6 +1,6 @@
 # movies_blog
 
-Hello! This is an open source self improvement project which will be frontend & template for web application about movie blog. This project will include:
+Hello! This is an open source self improvement project which will be frontend & template for web application about movie blog. This project will include
 
 - A NextJS project using Tailwind CSS
 - Server-side rendering with NextJS
@@ -13,5 +13,5 @@ Hello! This is an open source self improvement project which will be frontend & 
 - Reuseable and modular components
 - Containerized using Docker
 
-Application will be containerized by using Docker and will also include configured Nginx for easy deployment.
+Application will be containerized by using Docker and will also include configured Nginx for easy deployment. Currently it is integrated to undeployed backend based on Java (featured on my other branch)
 
