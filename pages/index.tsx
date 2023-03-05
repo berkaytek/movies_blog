@@ -22,21 +22,21 @@ export default function Home() {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   async function getInitialData() {
-    var initialMovieData: MovieModelBase =
+    const initialMovieData: MovieModelBase =
       await service.getItems<MovieModelBase>(
         "/movies/get?pageNumber=0&itemPerPage=50&sortBy=revenue&direction=descending"
       );
     setMovieData(initialMovieData);
   }
   async function getTopRatedMovies() {
-    var initialMovieData: MovieModelBase =
+    const initialMovieData: MovieModelBase =
       await service.getItems<MovieModelBase>(
         "/movies/get?pageNumber=0&itemPerPage=50&sortBy=revenue&direction=descending"
       );
       setTopRatedMovies(initialMovieData);
   }
   async function getNewMovies() {
-    var initialMovieData: MovieModelBase =
+    const initialMovieData: MovieModelBase =
       await service.getItems<MovieModelBase>(
         "/movies/get?pageNumber=0&itemPerPage=50&sortBy=releaseDate&direction=descending"
       );
@@ -44,7 +44,7 @@ export default function Home() {
   }
 
   async function getTotalMovieCount() {
-    var movieCount: MovieCount = await service.getSingleItem<MovieCount>(
+    const movieCount: MovieCount = await service.getSingleItem<MovieCount>(
       "/movies/count"
     );
     setTotalMovieCount(movieCount.count);
@@ -52,8 +52,8 @@ export default function Home() {
   }
 
   async function getInitialCorouselData(maxCount: number) {
-    var pageNumber = Math.floor(Math.random() * maxCount) / pageCount;
-    var initialCarouselData: MovieModelBase =
+    const pageNumber = Math.floor(Math.random() * maxCount) / pageCount;
+    const initialCarouselData: MovieModelBase =
       await service.getItems<MovieModelBase>(
         `/movies/get?pageNumber=0&itemPerPage=25&sortBy=id&direction=descending`
       );

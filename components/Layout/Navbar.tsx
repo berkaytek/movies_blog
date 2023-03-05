@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import React from "react";
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
@@ -9,7 +10,7 @@ const navigation = [
   { name: 'About', href: '#', current: false },
 ]
 
-function classNames(...classes:any) {
+function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
