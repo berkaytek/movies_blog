@@ -1,4 +1,4 @@
-const baseUrl:string = "http://localhost:8080"
+const baseUrl:string = "https://be-movies-backend.onrender.com"
 const service = {
   async request<T>(
     url: string,
