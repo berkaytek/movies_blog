@@ -1,4 +1,5 @@
 import ReactLoading from "react-loading";
+import React from "react";
 
 export const LoadingAnimation = () => (
   <div className="flex flex-col items-center -mt-16">

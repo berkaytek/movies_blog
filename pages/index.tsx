@@ -4,6 +4,7 @@ import MovieCarouselCard from "@/components/Carousel/MovieCarouselCard";
 import TopRatedSection from "@/components/Section/TopRatedSection";
 import NewSection from "@/components/Section/NewSection";
 import { LoadingAnimation } from "@/components/Animations/Loading";
+import React from "react";
 
 export default function Home() {
   const {
@@ -17,8 +18,6 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-
-    return () => {};
   }, []);
 
   return (
