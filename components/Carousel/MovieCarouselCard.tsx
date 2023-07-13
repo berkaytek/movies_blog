@@ -20,8 +20,8 @@ export default function MovieCarouselCard(props: Props) {
           Featured
         </p>
       </div>
-      <div className="grid lg:grid-cols-1 grid-cols-1 gap-4 content-center">
-            <MovieCarousel movieData={props.movieData!} />
+      <div className="grid lg:grid-cols-1 grid-cols-1 md:grid-cols-2 gap-4 content-center">
+        <MovieCarousel movieData={props.movieData!} />
       </div>
     </div>
   );

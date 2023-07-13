@@ -50,15 +50,15 @@ function MovieCarousel(props: Props) {
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
     >
-      <div className="overflow-hidden">
+      <div className="overflow-hidden max-h-100">
         <ul
           className="flex transition-all duration-500 ease-in-out"
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
           {props.movieData?._embedded.movieList.map((item, index) => (
             <li key={index} className="flex-shrink-0 w-full">
-              <div className="mx-auto w-5/6 relative">
-                <div className="flex w-full bg-gray-100">
+              <div className="mx-auto w-11/12 md:w-5/6 relative">
+                <div className="flex flex-col md:flex-row w-full bg-gray-100">
                   <img
                     src={
                       item.posterPath == null
@@ -66,9 +66,9 @@ function MovieCarousel(props: Props) {
                         : "https://image.tmdb.org/t/p/w300" + item.posterPath
                     }
                     alt={item.title}
-                    className="w-300 object-cover"
+                    className="w-full h-64 object-cover md:w-1/3 md:h-auto"
                   />
-                  <div className="p-4">
+                  <div className="p-4 md:w-2/3">
                     <h3 className="text-lg font-medium">{item.title}</h3>
                     <div className="flex pb-2">
                       <StarIcon
@@ -90,7 +90,7 @@ function MovieCarousel(props: Props) {
                         </button>
                       ))}
                     </div>
-                    <p className="text-gray-500">{item.overview}</p>
+                    <p className="text-gray-500 max-h-96">{item.overview}</p>
                   </div>
                 </div>
               </div>
