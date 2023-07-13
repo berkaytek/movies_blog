@@ -50,7 +50,7 @@ function MovieCarousel(props: Props) {
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
     >
-      <div className="overflow-hidden max-h-100">
+      <div className="overflow-hidden sm:max-h-100">
         <ul
           className="flex transition-all duration-500 ease-in-out"
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
