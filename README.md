@@ -15,3 +15,4 @@ Hello! This is an open source self improvement project which will be frontend & 
 
 Application will be containerized by using Docker and will also include configured Nginx for easy deployment. Currently it is integrated to undeployed backend based on Java (featured on my other branch)
 
+Utilizing data from Kaggle and images from TMDB
